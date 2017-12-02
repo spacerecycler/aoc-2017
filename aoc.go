@@ -32,6 +32,15 @@ func day1(input string) {
 		}
 	}
 	fmt.Printf("%d\n", sum)
+	sum = 0
+	half := len(r) / 2
+	for i := 0; i < len(r); i++ {
+		next := (i + half) % len(r)
+		if r[i] == r[next] {
+			sum += int(r[i] - '0')
+		}
+	}
+	fmt.Printf("%d\n", sum)
 }
 
 func day2(input string) {
@@ -60,6 +69,30 @@ func day2(input string) {
 			}
 		}
 		sum += max - min
+	}
+	fmt.Printf("%d\n", sum)
+	sum = 0
+	for _, line := range lines {
+		if len(line) == 0 {
+			continue
+		}
+		strings := strings.Split(line, "\t")
+		numbers := make([]int, 0, len(strings))
+		for _, s := range strings {
+			n, err := strconv.Atoi(s)
+			check(err)
+			numbers = append(numbers, n)
+		}
+		for i, n1 := range numbers {
+			for j, n2 := range numbers {
+				if i == j {
+					continue
+				}
+				if n1%n2 == 0 {
+					sum += n1 / n2
+				}
+			}
+		}
 	}
 	fmt.Printf("%d\n", sum)
 }
