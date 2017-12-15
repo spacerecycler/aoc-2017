@@ -19,6 +19,8 @@ func main() {
 		day1InputPtr = day1Set.String("input", "", "input file")
 		day2Set      = flag.NewFlagSet("day2", flag.ExitOnError)
 		day2InputPtr = day2Set.String("input", "", "input file")
+		day3Set      = flag.NewFlagSet("day3", flag.ExitOnError)
+		day3InputPtr = day3Set.String("input", "", "input number")
 	)
 	if len(os.Args) < 2 {
 		fmt.Printf("enter a solution day\n")
@@ -31,6 +33,9 @@ func main() {
 	case "day2":
 		day2Set.Parse(os.Args[2:])
 		day2(*day2InputPtr)
+	case "day3":
+		day3Set.Parse(os.Args[2:])
+		day3(*day3InputPtr)
 	default:
 		flag.PrintDefaults()
 		os.Exit(1)
